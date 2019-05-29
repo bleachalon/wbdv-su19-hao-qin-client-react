@@ -1,11 +1,11 @@
 import React from 'react'
 import LessonTabItemContainer from '../containers/LessonTabItemContainer'
-const LessonTabComponent = ({lessons, params, deleteModule}) =>
+const LessonTabComponent = ({lessons, params, deleteLesson}) =>
     
 
             lessons.map(lesson =>
                 <LessonTabItemContainer
-                    deleteModule={deleteModule}
+                    deleteLesson={deleteLesson}
                     key={lesson.id}
                     lesson={lesson}
                     params={params}/>

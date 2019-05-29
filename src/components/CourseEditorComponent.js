@@ -2,6 +2,7 @@ import React from 'react'
 import ModuleListContainer from '../containers/ModuleListContainer'
 import LessonTabsContainer from '../containers/LessonTabsContainer'
 import TopicPillsContainer from '../containers/TopicPillsContainer'
+import WidgeContainter from '../containers/WidgeContainert'
 
 const CourseEditorComponent = ({course, modules, lessons, topics, params}) =>
 <div>
@@ -24,6 +25,10 @@ const CourseEditorComponent = ({course, modules, lessons, topics, params}) =>
                 params={params}
                 course={course}
                 topics={topics}/>
+           </div>
+
+           <div>
+               <WidgeContainter/>
            </div>
         </div>
     </div>

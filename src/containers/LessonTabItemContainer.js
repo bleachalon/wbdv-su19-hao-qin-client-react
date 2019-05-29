@@ -23,7 +23,7 @@ export default class LessonTabItemContainer
         return (
         <LessonTabItemComponent
             state={this.state}
-            deleteModule={this.props.deleteModule}
+            deleteLesson={this.props.deleteLesson}
             updateState={this.updateState}
             lesson={this.state.lesson}
             editing={this.state.editing}

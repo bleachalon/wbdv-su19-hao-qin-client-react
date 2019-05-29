@@ -1,6 +1,6 @@
 import React from 'react'
 
-const LessonTabItemComponent = ({state, updateState, deleteModule, lesson, params, input}) =>
+const LessonTabItemComponent = ({state, updateState, deleteLesson, lesson, params, input}) =>
 <li className="nav-item">
     {!state.editing &&
         <span>
@@ -9,7 +9,7 @@ const LessonTabItemComponent = ({state, updateState, deleteModule, lesson, param
                 {lesson.title}
             </a>
             <i onClick={() => {updateState({editing: true})}} className="fa fa-pencil float-right"></i>
-            <i onClick={() => {deleteModule(lesson.id)}} className="fa fa-remove float-right"></i>
+            <i onClick={() => {deleteLesson(lesson.id)}} className="fa fa-remove float-right"></i>
         </span>
     }
     {state.editing &&
