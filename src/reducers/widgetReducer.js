@@ -18,6 +18,15 @@ const down=(widget, widgets)=>{
     return newWids
 }
 
+const findWidget=(widgetId, widgets)=>{
+    return widgets.filter(widget => widget.id == widgetId)
+}
+
+const findAllWidgets=(widgets)=>{
+    return widgets
+}
+
+
 const widgetReducer = (state={widgets: widgets, preview: false}, action) => {
     if(action.type === 'DELETE_WIDGET') {
         return {
@@ -50,6 +59,18 @@ const widgetReducer = (state={widgets: widgets, preview: false}, action) => {
         return{
             widgets: state.widgets,
             preview: !state.preview
+        }
+    }else if(action.type === 'FIND_WIDGET'){
+        return{
+            widgets: findWidget(1, state.widgets)
+        }
+    }else if(action.type === 'FIND_ALL_WIDGETS'){
+        return{
+            widgets: findAllWidgets(state.widgets)
+        }
+    }else if(action.type === 'FIND_ALL_WIDGETS_FOR_TOPIC'){
+        return{
+            widgets: state.widgets.filter(widget => widget.topicId != action.topicId)
         }
     }
     return state;
