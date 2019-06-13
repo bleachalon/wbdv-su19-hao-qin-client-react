@@ -47,7 +47,7 @@ class WhiteBoard extends React.Component {
                 </nav>
 
                 <Link to="/courses/table" className="float-right">Table</Link>
-               <Link to="/courses/grid" className="float-right">Grid</Link>
+                <Link to="/courses/grid" className="float-right">Grid</Link>
 
                     <Route
                         exact={true}

@@ -3,18 +3,37 @@ import CourseService from '../services/CourseService'
 import CourseCardComponent from '../components/CourseCardComponent'
 
 export default class CourseGridContainer extends React.Component {
-    constructor(props) {
+        constructor(props) {
         super(props)
         this.courseService = CourseService.getInstance()
         this.state = {
-            courses: this.courseService.findAllCourses()
+            courses:[]
         }
     }
+  
+    componentDidMount = () =>
+        this.findAllCourses();
 
+    findAllCourses = () =>
+        this.courseService.findAllCourses()
+            .then(courses => 
+            this.setState
+            ({courses: courses}));
+
+    createCourse = () =>
+        this.courseService
+            .createCourse({
+                id: (new Date()).getTime(),
+                title: 'New Course'
+            })
+            .then(() =>
+            this.findAllCourses());
+           
     deleteCourse = courseId =>
-    this.setState({
-        courses: this.state.courses.filter(course => course.id !== courseId)
-    })
+        this.courseService
+                .deleteCourse(courseId)
+                .then(() =>this.findAllCourses());
+
 
     render() {
         return (
@@ -22,6 +41,10 @@ export default class CourseGridContainer extends React.Component {
                     {this.state.courses.map((course, key) =>
                         <CourseCardComponent course={course} key={key} delet={this.deleteCourse}/>
                     )}
+
+                    <button className="btn btn-block btn-danger" onClick={()=>this.createCourse()} >
+                        Add
+                    </button>
             </div>
         )
     }

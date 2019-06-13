@@ -49,12 +49,12 @@ class WidgetListComponent extends React.Component {
                                     Delete
                                 </button>
                                 <button
-                                    // className= {`btn btn-dark ${widgets.indexOf(widget)==0? 'd-none' : ''}`}
+                                     className= {`btn btn-dark ${this.props.widgets.indexOf(widget)==0? 'd-none' : ''}`}
                                     onClick={()=> this.props.upWidget(widget)}>
                                     UP
                                 </button>
                                 <button
-                                    // className = {` btn btn-dark ${widgets.indexOf(widget)==(widgets.length-1)? 'd-none': ''}`}
+                                     className = {` btn btn-dark ${this.props.widgets.indexOf(widget)==(this.props.widgets.length-1)? 'd-none': ''}`}
                                     onClick={()=> this.props.downWidget(widget)}>
                                     Down
                                 </button>

@@ -26,7 +26,7 @@ export default class WidgetsService {
         fetch("http://localhost:8080/api/widgets").then(response => response.json())
 
 
-    findAlltopicForModuleById = widgetId =>
+    findWidgetsById = widgetId =>
         fetch(`http://localhost:8080/api/widgets/${widgetId}`).then(response => response.json())
 
     updateWidget  = (newWidget) => 

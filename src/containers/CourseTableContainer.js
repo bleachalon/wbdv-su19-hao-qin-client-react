@@ -7,18 +7,37 @@ export default class CourseListContainer extends React.Component {
         super(props)
         this.courseService = CourseService.getInstance()
         this.state = {
-            courses: this.courseService.findAllCourses()
+            courses:[]
         }
     }
+  
+    componentDidMount = () =>
+        this.findAllCourses();
 
+    findAllCourses = () =>
+        this.courseService.findAllCourses()
+            .then(courses => 
+            this.setState
+            ({courses: courses}));
+
+    createCourse = () =>
+        this.courseService
+            .createCourse({
+                id: (new Date()).getTime(),
+                title: 'New Course'
+            })
+            .then(() =>
+            this.findAllCourses());
+           
     deleteCourse = courseId =>
-    this.setState({
-        courses: this.state.courses.filter(course => course.id !== courseId)
-    })
+        this.courseService
+                .deleteCourse(courseId)
+                .then(() =>this.findAllCourses());
 
     render() {
         return (
-            <table className="table">
+            <div>
+                 <table className="table">
                 <thead className="thead-dark">
                 <tr>
                     <th scope="col">Title</th>
@@ -33,7 +52,14 @@ export default class CourseListContainer extends React.Component {
                 )}
 
                 </tbody>
-            </table>
+            </table> 
+
+                    <button className="btn btn-block btn-danger" onClick={()=>this.createCourse()} >
+                        Add
+                    </button>
+
+            </div>
+
         )
     }
 }
