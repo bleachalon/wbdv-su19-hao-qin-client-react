@@ -14,8 +14,8 @@ const HeadingWidget = ({widget, updateWidget, preview}) =>
             <select
                 id="size"
                 className= "custom-select mt-1 mb-3"
-                onChange={(e2) => updateWidget({...widget, heading: e2.target.value})}
-                value={widget.heading}>
+                onChange={(e2) => updateWidget({...widget, size: e2.target.value})}
+                value={widget.size}>
                 <option value="1">Heading 1</option>
                 <option value="2">Heading 2</option>
                 <option value="3">Heading 3</option>
@@ -28,11 +28,11 @@ const HeadingWidget = ({widget, updateWidget, preview}) =>
 
             <h2>Preview</h2>
         </div>
-            {widget.heading === '1' && <h1>{widget.text}</h1>}
-            {widget.heading === '2' && <h2>{widget.text}</h2>}
-            {widget.heading === '3' && <h3>{widget.text}</h3>}
-            {widget.heading === '4' && <h4>{widget.text}</h4>}
-            {widget.heading === '5' && <h5>{widget.text}</h5>}
+            {widget.size === 1 && <h1>{widget.text}</h1>}
+            {widget.size === 2 && <h2>{widget.text}</h2>}
+            {widget.size === 3 && <h3>{widget.text}</h3>}
+            {widget.size === 4 && <h4>{widget.text}</h4>}
+            {widget.size === 5 && <h5>{widget.text}</h5>}
     </div>
 
 export default HeadingWidget

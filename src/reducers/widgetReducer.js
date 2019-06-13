@@ -22,30 +22,18 @@ const findWidget=(widgetId, widgets)=>{
     return widgets.filter(widget => widget.id == widgetId)
 }
 
-const findAllWidgets=(widgets)=>{
-    return widgets
-}
-
-
-const widgetReducer = (state={widgets: widgets, preview: false}, action) => {
+const widgetReducer = (state={widgets: [], preview: false}, action) => {
     if(action.type === 'DELETE_WIDGET') {
-        return {
-            widgets: state.widgets.filter(widget => widget.id != action.widgetId)
+        return{
+            widgets: action.widgets
         }
     } else if(action.type === 'CREATE_WIDGET') {
-        return {
-            widgets: [
-                ...state.widgets,
-                {
-                    id: (new Date()).getTime(),
-                    name: 'New Widget',
-                    type: 'HEADING'
-                }
-            ]
+        return{
+            widgets: action.widgets
         }
     } else if(action.type === 'UPDATE_WIDGET') {
-        return {
-            widgets: state.widgets.map(widget => widget.id == action.widget.id ? action.widget : widget)
+        return{
+            widgets: action.widgets
         }
     }else if(action.type === 'UP_WIDGET'){
         return{
@@ -66,7 +54,7 @@ const widgetReducer = (state={widgets: widgets, preview: false}, action) => {
         }
     }else if(action.type === 'FIND_ALL_WIDGETS'){
         return{
-            widgets: findAllWidgets(state.widgets)
+            widgets: action.widgets
         }
     }else if(action.type === 'FIND_ALL_WIDGETS_FOR_TOPIC'){
         return{

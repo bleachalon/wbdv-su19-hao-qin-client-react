@@ -1,7 +1,7 @@
 import React from 'react'
 
 const ParagraphWidget = ({widget, updateWidget, preview}) =>
-    <div>
+    <div name = "Paragraph">
         <div hidden={preview} >
         <h1>Paragraph Widget</h1>
         <label for="text" >Paragraph Text</label>

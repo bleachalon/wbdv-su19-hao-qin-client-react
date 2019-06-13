@@ -1,5 +1,8 @@
 import WidgetListComponent from "../components/WidgetListComponent";
 import {connect} from 'react-redux'
+import service from "../services/WidgetsService";
+
+const WidgetsService = service.getInstance();
 
 const stateToPropMapper = state => ({
     widgets: state.widgets,
@@ -7,15 +10,25 @@ const stateToPropMapper = state => ({
 })
 
 const propsToDispatcher = dispatch => ({
-    updateWidget: widget => {
-        dispatch({type: 'UPDATE_WIDGET', widget: widget})
-    },
-    deleteWidget: (wid) => {dispatch({type: 'DELETE_WIDGET', widgetId: wid})},
-    createWidget: () => {
-        dispatch({
-            type: 'CREATE_WIDGET'
-        })
-    },
+    findAllWidgets: () =>
+        WidgetsService.findAllWidgets()
+        .then(widgets => dispatch({type: 'FIND_ALL_WIDGETS', widgets: widgets })),
+        
+    updateWidget: widget => 
+        WidgetsService.updateWidget(widget)
+        .then(widgets => dispatch({type: 'UPDATE_WIDGET', widgets: widgets})),
+
+    deleteWidget: (widgetId) => 
+        WidgetsService.deleteWidget(widgetId)
+        .then(widgets=>  dispatch({type: 'DELETE_WIDGET', widgets: widgets})),
+
+    createWidget: () => 
+        WidgetsService.createWidget({
+            id: (new Date()).getTime(),
+            name: 'New Widget',
+            type: 'Heading'
+        }).then(widgets => dispatch({type: 'CREATE_WIDGET', widgets: widgets })),
+
     upWidget: (wid) =>{
         dispatch({type:'UP_WIDGET', widget:wid})
     },

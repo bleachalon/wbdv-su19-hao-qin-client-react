@@ -1,4 +1,4 @@
-import widgets from './widgets.json'
+
 
 export default class WidgetsService {
 
@@ -12,20 +12,35 @@ export default class WidgetsService {
         return this.myInstance;
     }
 
-    createWidget = (topicId, widget) => {
-        widget['topicId'] = topicId
-        widgets.push(widget)
-    }
-    findAlltopics = () =>
-        widgets
-    findAlltopicForModuleById = topicId =>
-        widgets.filter(widget => widget.topicId == topicId)
-    updatetopicForModuleById  = (topicId, newWidget) => {
-        widgets = widgets.map(
-            widget => widget.topicId == topicId ?
-                newWidget : widget)
-    }
-    deletetopic = widgetId => {
-        widgets = widgets.filter(widget => widget.id !== widgetId)
-    }
+    createWidget = (widget) => 
+        fetch("http://localhost:8080/api/widgets", {
+            method: 'POST',
+            body: JSON.stringify(widget),
+            headers: {
+                'content-type': 'application/json'
+            }
+        }).then(response => response.json())
+    
+
+    findAllWidgets = () =>
+        fetch("http://localhost:8080/api/widgets").then(response => response.json())
+
+
+    findAlltopicForModuleById = widgetId =>
+        fetch(`http://localhost:8080/api/widgets/${widgetId}`).then(response => response.json())
+
+    updateWidget  = (newWidget) => 
+        fetch(`http://localhost:8080/api/widgets/${newWidget.id}`, {
+            method: 'PUT',
+            body: JSON.stringify(newWidget),
+            headers: {
+                'content-type': 'application/json'
+            }
+        }).then(response => response.json())
+
+    deleteWidget = widgetId => 
+        fetch(`http://localhost:8080/api/widgets/${widgetId}`, {
+            method: 'DELETE'
+        }).then(response => response.json())
+    
 }

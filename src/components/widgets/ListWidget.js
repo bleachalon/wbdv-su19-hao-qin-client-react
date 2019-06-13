@@ -1,23 +1,23 @@
 import React from 'react'
 
 const ListWidget = ({widget, updateWidget, preview}) =>
-    <div>
+    <div name= "List">
         <div hidden={preview} >
         <h1>List Widget</h1>
         <label for="list" >List Item</label>
             <textarea
                 id="list" 
                 className= "form-control mb-3"
-                defaultValue={widget.list}
-                onChange={(e) => updateWidget({...widget, list: e.target.value})}
+                defaultValue={widget.text}
+                onChange={(e) => updateWidget({...widget, text: e.target.value})}
                 placeholder="Enter one list item per line"></textarea>
 
         <select
             className="custom-select"
-            onChange={(event) => updateWidget({...widget, listType: event.target.value})}
-            value={widget.listType}>
-            <option value="unordered">Unordered List</option>
-            <option value="ordered">Ordered List</option>
+            onChange={(e2) => updateWidget({...widget, ordered: e2.target.value})}
+            value={widget.ordered}>
+            <option value= "unordered" >Unordered List</option>
+            <option value= "ordered">Ordered List</option>
         </select>
 
 
@@ -30,10 +30,10 @@ const ListWidget = ({widget, updateWidget, preview}) =>
         </div>
 
         {
-            widget.listType=='unordered' && <ul>{widget.list.split('\n').map((item,index)=>(<li key={index}>{item}</li>))}</ul>
+            widget.ordered=='unordered' && <ul>{widget.text.split('\n').map((item,index)=>(<li key={index}>{item}</li>))}</ul>
         }
         {
-            widget.listType=='ordered' && <ol>{widget.list.split('\n').map((item,index)=>(<li key={index}>{item}</li>))}</ol>
+            widget.ordered=='ordered' && <ol>{widget.text.split('\n').map((item,index)=>(<li key={index}>{item}</li>))}</ol>
         }
     </div>
 
