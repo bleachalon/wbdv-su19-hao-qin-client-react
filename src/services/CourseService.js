@@ -1,4 +1,4 @@
-import courses from './courses.json'
+var adr = "https://wbdv-su19-hao-qin-server-react.herokuapp.com/api/"
 
 class CourseService {
 
@@ -13,7 +13,7 @@ class CourseService {
     }
 
     createCourse = (course) => 
-        fetch("http://localhost:8080/api/courses", {
+        fetch( adr + "courses", {
                 method: 'POST',
                 body: JSON.stringify(course),
                 headers: {
@@ -23,14 +23,14 @@ class CourseService {
 
 
     findAllCourses = () => 
-        fetch("http://localhost:8080/api/courses").then(response => response.json())
+        fetch(adr +  "courses").then(response => response.json())
     
     findCourseById = courseId => 
-        fetch(`http://localhost:8080/api/courses/${courseId}`).then(response => response.json())
+        fetch( adr +  `courses/${courseId}`).then(response => response.json())
     
 
     updateCourse = (newCourse) => 
-        fetch(`http://localhost:8080/api/courses/${newCourse.id}`, {
+        fetch( adr +  `courses/${newCourse.id}`, {
             method: 'PUT',
             body: JSON.stringify(newCourse),
             headers: {
@@ -40,7 +40,7 @@ class CourseService {
     
 
     deleteCourse = courseId => 
-       fetch(`http://localhost:8080/api/courses/${courseId}`, {
+       fetch( adr +  `courses/${courseId}`, {
             method: 'DELETE'
         }).then(response => response.json())
     }

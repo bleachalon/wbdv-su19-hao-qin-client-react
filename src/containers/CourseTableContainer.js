@@ -7,7 +7,8 @@ export default class CourseListContainer extends React.Component {
         super(props)
         this.courseService = CourseService.getInstance()
         this.state = {
-            courses:[]
+            courses:[],
+            edit: false
         }
     }
   
@@ -34,6 +35,14 @@ export default class CourseListContainer extends React.Component {
                 .deleteCourse(courseId)
                 .then(() =>this.findAllCourses());
 
+
+    updateCourse = course => 
+        this.courseService.updateCourse(course).then(() =>this.findAllCourses());    
+
+    editing=()=>
+        this.setState({edit: !this.state.edit})
+
+
     render() {
         return (
             <div>
@@ -43,12 +52,13 @@ export default class CourseListContainer extends React.Component {
                     <th scope="col">Title</th>
                     <th scope="col">Author</th>
                     <th className="d-none d-md-table-cell" scope="col">Modified date</th>
-                    <th scope="col">Delete</th>
+                    <th scope="col">Edit/Delete</th>
                 </tr>
                 </thead>
                 <tbody>
                 {this.state.courses.map((course, key) =>
-                    <CourseRowComponent course={course} key={key} delet={this.deleteCourse}/>
+                    <CourseRowComponent course={course} key={key} delet={this.deleteCourse} 
+                        update={this.updateCourse} edit={this.state.edit} editing={this.editing} />
                 )}
 
                 </tbody>

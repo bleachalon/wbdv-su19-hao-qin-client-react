@@ -14,13 +14,6 @@ class WidgetListComponent extends React.Component {
 
     render(){
         return(
-            // <div>
-            //     <ul>
-            //         {
-            //             this.props.widgets.map(widget=> <li>{widget.id}abcd</li>)
-            //         }
-            //     </ul>
-            // </div>
             <ul className="list-group mt-3">
             <div className="mb-3" >
                 <button className="float-right btn btn-success" >save</button>

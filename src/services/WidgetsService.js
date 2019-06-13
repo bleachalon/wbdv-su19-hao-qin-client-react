@@ -1,5 +1,5 @@
 
-
+var adr = "https://wbdv-su19-hao-qin-server-react.herokuapp.com/api/"
 export default class WidgetsService {
 
     static myInstance = null;
@@ -13,7 +13,7 @@ export default class WidgetsService {
     }
 
     createWidget = (widget) => 
-        fetch("http://localhost:8080/api/widgets", {
+        fetch(adr + "widgets", {
             method: 'POST',
             body: JSON.stringify(widget),
             headers: {
@@ -23,14 +23,14 @@ export default class WidgetsService {
     
 
     findAllWidgets = () =>
-        fetch("http://localhost:8080/api/widgets").then(response => response.json())
+        fetch(adr + "widgets").then(response => response.json())
 
 
     findWidgetsById = widgetId =>
-        fetch(`http://localhost:8080/api/widgets/${widgetId}`).then(response => response.json())
+        fetch( adr + `widgets/${widgetId}`).then(response => response.json())
 
     updateWidget  = (newWidget) => 
-        fetch(`http://localhost:8080/api/widgets/${newWidget.id}`, {
+        fetch( adr + `widgets/${newWidget.id}`, {
             method: 'PUT',
             body: JSON.stringify(newWidget),
             headers: {
@@ -39,7 +39,7 @@ export default class WidgetsService {
         }).then(response => response.json())
 
     deleteWidget = widgetId => 
-        fetch(`http://localhost:8080/api/widgets/${widgetId}`, {
+        fetch(adr +`widgets/${widgetId}`, {
             method: 'DELETE'
         }).then(response => response.json())
     

@@ -7,7 +7,8 @@ export default class CourseGridContainer extends React.Component {
         super(props)
         this.courseService = CourseService.getInstance()
         this.state = {
-            courses:[]
+            courses:[],
+            edit: false
         }
     }
   
@@ -34,12 +35,18 @@ export default class CourseGridContainer extends React.Component {
                 .deleteCourse(courseId)
                 .then(() =>this.findAllCourses());
 
+    updateCourse = course => 
+        this.courseService.updateCourse(course).then(() =>this.findAllCourses());    
+
+    editing=()=>
+        this.setState({edit: !this.state.edit})
 
     render() {
         return (
             <div className="card-deck">
                     {this.state.courses.map((course, key) =>
-                        <CourseCardComponent course={course} key={key} delet={this.deleteCourse}/>
+                        <CourseCardComponent course={course} key={key} delet={this.deleteCourse}
+                            update={this.updateCourse} edit={this.state.edit} editing={this.editing}/>
                     )}
 
                     <button className="btn btn-block btn-danger" onClick={()=>this.createCourse()} >
