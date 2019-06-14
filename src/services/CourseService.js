@@ -1,4 +1,4 @@
-var adr = "https://wbdv-su19-hao-qin-server-react.herokuapp.com/api/"
+var adr = "http://localhost:8080/api/"
 
 class CourseService {
 
@@ -19,7 +19,7 @@ class CourseService {
                 headers: {
                     'content-type': 'application/json'
                 }
-            }).then(response => response.json())
+            }).then(this.findAllCourses)
 
 
     findAllCourses = () => 
@@ -36,13 +36,13 @@ class CourseService {
             headers: {
                 'content-type': 'application/json'
             }
-        }).then(response => response.json())
+        }).then(this.findAllCourses)
     
 
     deleteCourse = courseId => 
        fetch( adr +  `courses/${courseId}`, {
             method: 'DELETE'
-        }).then(response => response.json())
+        }).then(this.findAllCourses)
     }
 
 export default CourseService

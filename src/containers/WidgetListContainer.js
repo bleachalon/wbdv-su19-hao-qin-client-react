@@ -20,14 +20,14 @@ const propsToDispatcher = dispatch => ({
 
     deleteWidget: (widgetId) => 
         WidgetsService.deleteWidget(widgetId)
-         .then(widgets=>  dispatch({type: 'DELETE_WIDGET', widgets: widgets})),
+         .then(widgets=> dispatch({type: 'DELETE_WIDGET', widgets: widgets})),
 
     createWidget: () => 
         WidgetsService.createWidget({
             id: (new Date()).getTime(),
             name: 'New Widget',
             type: 'Heading'
-        }).then(widgets => dispatch({type: 'CREATE_WIDGET', widgets: widgets })),
+        }).then(widgets => dispatch({type: 'CREATE_WIDGET', widgets: widgets})),
 
     upWidget: (wid) =>{
         dispatch({type:'UP_WIDGET', widget:wid})

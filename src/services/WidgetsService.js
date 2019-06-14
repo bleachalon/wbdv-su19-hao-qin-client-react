@@ -1,5 +1,5 @@
 
-var adr = "https://wbdv-su19-hao-qin-server-react.herokuapp.com/api/"
+var adr = "http://localhost:8080/api/"
 export default class WidgetsService {
 
     static myInstance = null;
@@ -19,7 +19,7 @@ export default class WidgetsService {
             headers: {
                 'content-type': 'application/json'
             }
-        }).then(response => response.json())
+        }).then(this.findAllWidgets)
     
 
     findAllWidgets = () =>
@@ -36,11 +36,11 @@ export default class WidgetsService {
             headers: {
                 'content-type': 'application/json'
             }
-        }).then(response => response.json())
+        }).then(this.findAllWidgets)
 
     deleteWidget = widgetId => 
         fetch(adr +`widgets/${widgetId}`, {
             method: 'DELETE'
-        }).then(response => response.json())
+        }).then(this.findAllWidgets)
     
 }
