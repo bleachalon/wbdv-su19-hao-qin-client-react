@@ -1,4 +1,5 @@
-var adr = "http://localhost:8080/api/"
+//var adr = "http://localhost:8080/api/"
+var adr= "https://webdev-qin-server-java-6.herokuapp.com/api/"
 
 export default class ModuleService {
 
