@@ -1,4 +1,4 @@
-import modules from './modules.json'
+var adr = "http://localhost:8080/api/"
 
 export default class ModuleService {
 
@@ -12,23 +12,35 @@ export default class ModuleService {
         return this.myInstance;
     }
 
-    createModuleForCourseId = (courseId, module) => {
-        module['courseId'] = courseId
-        modules.push(module)
-    }
+    createModuleForCourse = (courseId, module1) => 
+        fetch( adr + `courses/${courseId}/modules`, {
+            method: 'POST',
+            body: JSON.stringify(module1),
+            headers: {
+                'content-type': 'application/json'
+            }
+        }).then(response => response.json())
+    
+
     findAllModules = () =>
-        modules
+        fetch(adr +  "modules").then(response => response.json())
 
-    findAllModuleForCourseById = courseId =>
-        modules.filter(module => module.courseId == courseId)
+    findAllModulesForCourse = courseId =>
+        fetch(adr +  `courses/${courseId}/modules`).then(response => response.json())
 
-    updateModuleForCourseId  = (courseId, newModule) => {
-        modules = modules.map(
-            module => module.courseId == courseId ?
-                newModule : module)
-    }
+    updateModule  = (newModule) => 
+        fetch( adr +  `modules/${newModule.id}`, {
+            method: 'PUT',
+            body: JSON.stringify(newModule),
+            headers: {
+                'content-type': 'application/json'
+            }
+        }).then()
+    
 
-    deleteModule = moduleId => {
-        modules = modules.filter(module => module.id !== moduleId)
-    }
+    deleteModule = moduleId => 
+        fetch( adr +  `modules/${moduleId}`, {
+            method: 'DELETE'
+        }).then(response => response.json())
+    
 }

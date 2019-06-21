@@ -24,9 +24,8 @@ const propsToDispatcher = dispatch => ({
 
     createWidget: () => 
         WidgetsService.createWidget({
-            id: (new Date()).getTime(),
             name: 'New Widget',
-            type: 'Heading'
+            type: 0
         }).then(widgets => dispatch({type: 'CREATE_WIDGET', widgets: widgets})),
 
     upWidget: (wid) =>{

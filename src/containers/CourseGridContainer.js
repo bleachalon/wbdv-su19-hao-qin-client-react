@@ -24,7 +24,6 @@ export default class CourseGridContainer extends React.Component {
     createCourse = () =>
         this.courseService
             .createCourse({
-                id: (new Date()).getTime(),
                 title: 'New Course'
             })
             .then(() =>

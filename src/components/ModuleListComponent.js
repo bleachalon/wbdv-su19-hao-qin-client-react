@@ -1,13 +1,14 @@
 import React from 'react'
 import ModuleListItemContainer from '../containers/ModuleListItemContainer'
-const ModuleListComponent = ({create, modules, params, deleteModule}) =>
+const ModuleListComponent = ({updateModule, modules, params, deleteModule}) =>
 <div>
 {
-            modules.map(module =>
+            modules.map(module1 =>
                 <ModuleListItemContainer
+                    updateModule={updateModule}
                     deleteModule={deleteModule}
-                    key={module.id}
-                    module={module}
+                    key={module1.id}
+                    module={module1}
                     params={params}/>
             )
         }

@@ -24,8 +24,7 @@ export default class CourseListContainer extends React.Component {
     createCourse = () =>
         this.courseService
             .createCourse({
-                id: (new Date()).getTime(),
-                title: 'New Course'
+                title: 'New Course',
             })
             .then(() =>
             this.findAllCourses());

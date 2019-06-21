@@ -16,25 +16,26 @@ export default class CourseEditorContainer
         this.lessonService = LessonService.getInstance()
         this.topicService = topicService.getInstance()
         const course = this.courseService.findCourseById(courseId)
-        const modules = this.moduleService.findAllModuleForCourseById(courseId)
+        //const modules = this.moduleService.findAllModulesForCourse(courseId)
         const lessons = this.lessonService.findAllLessonForModuleById(moduleId)
         const topics = this.topicService.findAlltopicForModuleById(moduleId)
         this.state = {
             course: course,
-            modules: modules,
+           // modules: modules,
             lessons: lessons,
             topics: topics
         }
     }
     render() {
         return(
-
+            <div>
             <CourseEditorComponent
                 course={this.state.course}
-                modules={this.state.modules}
+               // modules={this.state.modules}
                 lessons={this.state.lessons}
                 topics={this.state.topics}
                 params={this.props.match.params}/>
+                </div>
         )
     }
 }

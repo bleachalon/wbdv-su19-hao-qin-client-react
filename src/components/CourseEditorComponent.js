@@ -12,7 +12,8 @@ const CourseEditorComponent = ({course, modules, lessons, topics, params}) =>
             <ModuleListContainer
                 params={params}
                 course={course}
-                modules={modules}/>
+                //modules={modules}
+                />
         </div>
         <div className="col-8">
             <LessonTabsContainer
