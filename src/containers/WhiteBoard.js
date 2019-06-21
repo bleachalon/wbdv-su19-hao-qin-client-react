@@ -41,8 +41,8 @@ class WhiteBoard extends React.Component {
                             </ul> 
                     </div>
                     <form className="form-inline">
-                        <input className="form-control my-2 mr-sm-2" type="text" placeholder="File Name" value="New Course Title" aria-label="Search"></input>
-                        <button className="btn btn-outline-dark" type="submit">Add</button>
+                        <input className="form-control my-2 mr-sm-2" type="text" placeholder="File Name" value="Course Title" aria-label="Search"></input>
+                        <button className="btn btn-outline-dark" type="submit">search</button>
                     </form>
                 </nav>
 
